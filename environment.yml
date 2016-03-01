@@ -1,0 +1,8 @@
+name: twitter-giphy
+dependencies:
+- python=2.7
+- requests
+- pip
+- pip:
+    - tweepy
+
