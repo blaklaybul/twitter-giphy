@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+    <title>{% block title %}{% endblock %} - GIFingerprint</title>
+    {% endblock %}
+  </head>
+  <body>
+      {% block nav %}
+      <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="">GIFingerprint<span class="sr-only">(current)</span></a></li>
+                <li><a href="">Tag Lifespans<span class="sr-only">(current)</span></a></li>
+                <li><a href="">City Board<span class="sr-only">(current)</span></a></li>
+                <li><a href="">Admin</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+      </nav>
+      {% endblock %}
+
+      {% block body %}
+      {% endblock %}
+
+      {% block scripts %}
+      <script src="{{ url_for('static', filename='lib/d3.js') }}"></script>
+      <script src="{{ url_for('static', filename='lib/jquery.js') }}"></script>
+      <script src="{{ url_for('static', filename='lib/bootstrap.js') }}"></script>
+      <script src="{{ url_for('static', filename='lib/underscore.js') }}"></script>
+      {% endblock %}
+  </body>
+</html>

@@ -42,7 +42,6 @@ def main():
         } for trend in data[0]["trends"]
     ]
 
-    print testi[0]
 
 if __name__ == '__main__':
     main()
