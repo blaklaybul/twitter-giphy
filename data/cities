@@ -1,64 +1,64 @@
-NY,  New York
-NM,  Albuquerque
-XX,  United States
-CA,  Fresno
-CA,  Long Beach
-AZ,  Tucson
-PA,  Philadelphia
-CA,  San Jose
-AZ,  Mesa
-CO,  Colorado Springs
-CA,  Los Angeles
-DC,  Washington
-VA,  Virginia Beach
-CA,  San Francisco
-IL,  Chicago          
-MA,  Boston
-GA,  Atlanta
-TX,  Dallas-Ft. Worth
-TX,  Houston
-FL,  Miami
-CO,  Denver
-OH,  Cleveland
-WA,  Seattle
-FL,  Tampa
-AZ,  Phoenix
-MN,  Minneapolis
-CA,  San Diego
-MI,  Detroit
-NV,  Las Vegas
-MO,  St. Louis
-CT,  New Haven
-NC,  Charlotte
-IN,  Indianapolis
-UT,  Salt Lake City
-TX,  Austin
-NC,  Raleigh
-FL,  Orlando
-KY,  Louisville
-OR,  Portland
-LA,  Baton Rouge
-OH,  Columbus
-PA,  Pittsburgh
-MD,  Baltimore
-TX,  San Antonio
-NE,  Omaha
-OK,  Oklahoma City
-MS,  Jackson
-TX,  El Paso
-WI,  Milwaukee
-TN,  Memphis
-OH,  Cincinnati
-RI,  Providence
-FL,  Tallahassee
-VA,  Norfolk
-MO,  Kansas City
-VA,  Richmond
-PA,  Harrisburg
-CA,  Sacramento
-AL,  Birmingham
-TN,  Nashville
-HI,  Honolulu
-NC,  Greensboro
-FL,  Jacksonville
-LA,  New Orleans
+{"New York" : "NY",
+"Albuquerque" : "NM",
+"United States" : "XX",
+"Fresno" : "CA",
+"Long Beach" : "CA",
+"Tucson" : "AZ",
+"Philadelphia" : "PA",
+"San Jose" : "CA",
+"Mesa" : "AZ",
+"Colorado Springs" : "CO",
+"Los Angeles" : "CA",
+"Washington" : "DC",
+"Virginia Beach" : "VA",
+"San Francisco" : "CA",
+"Chicago" : "IL",
+"Boston" : "MA",
+"Atlanta" : "GA",
+"Dallas-Ft. Worth" : "TX",
+"Houston" : "TX",
+"Miami" : "FL",
+"Denver" : "CO",
+"Cleveland" : "OH",
+"Seattle" : "WA",
+"Tampa" : "FL",
+"Phoenix" : "AZ",
+"Minneapolis" : "MN",
+"San Diego" : "CA",
+"Detroit" : "MI",
+"Las Vegas" : "NV",
+"St. Louis" : "MO",
+"New Haven" : "CT",
+"Charlotte" : "NC",
+"Indianapolis" : "IN",
+"Salt Lake City" : "UT",
+"Austin" : "TX",
+"Raleigh" : "NC",
+"Orlando" : "FL",
+"Louisville" : "KY",
+"Portland" : "OR",
+"Baton Rouge" : "LA",
+"Columbus" : "OH",
+"Pittsburgh" : "PA",
+"Baltimore" : "MD",
+"San Antonio" : "TX",
+"Omaha" : "NE",
+"Oklahoma City" : "OK",
+"Jackson" : "MS",
+"El Paso" : "TX",
+"Milwaukee" : "WI",
+"Memphis" : "TN",
+"Cincinnati" : "OH",
+"Providence" : "RI",
+"Tallahassee" : "FL",
+"Norfolk" : "VA",
+"Kansas City" : "MO",
+"Richmond" : "VA",
+"Harrisburg" : "PA",
+"Sacramento" : "CA",
+"Birmingham" : "AL",
+"Nashville" : "TN",
+"Honolulu" : "HI",
+"Greensboro" : "NC",
+"Jacksonville" : "FL",
+"New Orleans" : "LA"}
