@@ -1,18 +1,49 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+body{
+    background-color: #29293d
+}
 
 .state rect {
   fill: #000;
 }
 
 .state text {
-  font: 24px sans-serif;
+  font: 48px sans-serif;
   text-anchor: middle;
   fill: white;
 
 }
+input[type=range]{
+    -webkit-appearance: none;
+}
 
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
 /*.state--selected rect {
   fill: #9f4a6c;
 }
@@ -36,7 +67,7 @@
 
 </style>
 <svg width="1200" height="800"></svg>
-<input type="range" min="1" max="150" id="date">
+<input id="slider" type="range" name="slider" min="0" max="5" value="0" step="1"/>
 <script id="grid" type="text/plain">
 XX                            ME
                WI          VT NH
@@ -52,6 +83,8 @@ HI AK    TX             FL
 
 function init(date){
 
+d3.selectAll(".state").remove();
+d3.selectAll(".state").remove();
 new Map(date);
 
 }
@@ -65,9 +98,8 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
  '2016-04-04', '2016-04-05', '2016-04-06', '2016-04-07', '2016-04-08', '2016-04-09', '2016-04-10', '2016-04-11',
  '2016-04-12', '2016-04-13', '2016-04-14', '2016-04-15', '2016-04-16', '2016-04-17'];
 
- var totalDays = filedate.length;
+ var totalDays = filedates.length;
 
- 
 
     var states = [];
 
@@ -80,12 +112,27 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
       });
     });
 
-    var svg = d3.select("svg"),
+    var svg = d3.select("svg").attr("id","chart"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
     var gridWidth = d3.max(states, function(d) { return d.x; }) + 1,
         gridHeight = d3.max(states, function(d) { return d.y; }) + 1,
         cellSize = 100;
+
+    svg.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "#29293d")
+
+    d3.select("#slider")
+        .attr("max",totalDays-1)
+        .on('change', function(d) {
+              console.log(filedates[this.value]);
+    })
+    .on('input', function(d) {
+          console.log(filedates[this.value]);
+          init(filedates[this.value]);
+});
 
     var file = "map/" +date + ".json";
 
@@ -103,6 +150,7 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
             .data(states)
           .enter().append("g")
             .attr("id", function(d) { return d.name })
+            .attr("class", "state")
             .attr("transform", function(d) {
                     return "translate(" + (d.x - gridWidth / 2) * cellSize + "," + (d.y - gridHeight / 2) * cellSize + ")";
             });
@@ -113,6 +161,7 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
             .data(json)
           .enter().append("g")
             .attr("id", function(d) { return d.name })
+            .attr("class", "state")
             .attr("transform", function(d) {
                     var forx = states[states.findIndex(x => x.name==d.stateName)].x;
                     var fory = states[states.findIndex(x => x.name==d.stateName)].y;
@@ -125,7 +174,25 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
                 .attr("width", cellSize)
                 .attr("height", cellSize)
                 .style("fill", "black")
-                .style("opacity", 0);
+                .style("opacity", 0)
+                .on("mouseover", function(d){
+                    d3.select(this)
+                    .style("opacity", 0.8);
+                })
+                .on("mouseout", function(d){
+                    d3.select(this)
+                    .style("opacity", 0);
+                });
+
+
+        state.append("rect")
+                          .attr("x", -cellSize / 2)
+                          .attr("y", -cellSize / 2)
+                          .attr("width", cellSize)
+                          .attr("height", cellSize)
+                          .style("fill", "white")
+                          .style("opacity", 0);
+
 
         bg.append("image")
                   .data(states)
@@ -134,15 +201,8 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
                   .attr("y", -cellSize/2)
                   .attr("width", cellSize)
                   .attr("height", cellSize)
-                  .style("opactiy", 1.0);
+                  .style("opactiy", 1.0)
 
-        state.append("rect")
-                          .attr("x", -cellSize / 2)
-                          .attr("y", -cellSize / 2)
-                          .attr("width", cellSize)
-                          .attr("height", cellSize)
-                          .style("fill", "white")
-                          .style("opacity", 1);
 
         state.append("image")
             .data(json)
@@ -152,22 +212,37 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
               .attr("x", -cellSize/2)
               .attr("y", -cellSize/2)
               .attr("width", cellSize)
+              .attr("id", function(d){return d.stateName + "-" + d.trendMapped})
               .attr("height", cellSize)
-              .style("opactiy", 1.0)
-              .on("mousedown", function(d){ console.log(d.trendMapped)});
+              .style("opactiy", 1.0);
+
 
 
         bg.append("text")
             .data(states)
-             .attr("dy", ".15em")
-             .style("fill", "black")
-             .text(function(d) { return d.name; });
+             .attr("dy", "0.35em")
+             .style("fill", "whites")
+             .style("opacity", 0)
+             .text(function(d) { return d.name; })
+             .on("mouseover",function(){
+                 d3.select(this).style("opacity",1);
+             })
+             .on("mouseout",function(){
+                 d3.select(this).style("opacity",0);
+             });
 
-             state.append("text")
-                 .data(json)
-                  .attr("dy", ".15em")
-                  .style("fill", "black")
-                  .text(function(d) { return d.stateName; });
+         state.append("text")
+             .data(json)
+              .attr("dy", ".35em")
+              .style("fill", "white")
+              .style("opacity", 0)
+              .text(function(d) { return d.stateName; })
+              .on("mouseover",function(){
+                  d3.select(this).style("opacity",1);
+              })
+              .on("mouseout",function(){
+                  d3.select(this).style("opacity",0);
+              });;
          });
  }
 
