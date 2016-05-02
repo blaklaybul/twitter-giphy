@@ -185,13 +185,7 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
                 });
 
 
-        state.append("rect")
-                          .attr("x", -cellSize / 2)
-                          .attr("y", -cellSize / 2)
-                          .attr("width", cellSize)
-                          .attr("height", cellSize)
-                          .style("fill", "white")
-                          .style("opacity", 0);
+
 
 
         bg.append("image")
@@ -202,6 +196,14 @@ var filedates =  ['2016-03-03', '2016-03-04', '2016-03-05', '2016-03-06', '2016-
                   .attr("width", cellSize)
                   .attr("height", cellSize)
                   .style("opactiy", 1.0)
+
+      state.append("rect")
+                        .attr("x", -cellSize / 2)
+                        .attr("y", -cellSize / 2)
+                        .attr("width", cellSize)
+                        .attr("height", cellSize)
+                        .style("fill", "#29293d")
+                        .style("opacity", 1);
 
 
         state.append("image")
