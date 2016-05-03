@@ -1,5 +1,6 @@
 formatDate = d3.time.format("%b %d");
 formatDate2 = d3.time.format("%Y-%m-%d");
+formatDate3 = d3.time.format("%b %d, %Y");
 
 // parameters
 var margin = {
@@ -75,12 +76,12 @@ var handle = slider.append("g")
   handle.append("circle")
     .attr("class", "handle-circle")
     .attr("transform", "translate(0," + height / 2 + ")")
-    .attr("r", 9);
+    .attr("r", 15);
 
-handle.append('text')
-  .attr("class", "handle-text")
-  .text(startingValue)
-  .attr("transform", "translate(" + (-18) + " ," + (height / 2 - 25) + ")");
+// handle.append('text')
+//   .attr("class", "handle-text")
+//   .text(startingValue)
+//   .attr("transform", "translate(" + (-18) + " ," + (height / 2 - 25) + ")");
 
 slider
   .call(brush.event)
@@ -95,7 +96,8 @@ function brushed() {
   }
 
   handle.attr("transform", "translate(" + timeScale(value) + ",0)");
-  handle.select('text').text(formatDate(value));
+  // handle.select('text').text(formatDate(value));
+  d3.select('#date').text(formatDate3(value));
 
   init(formatDate2(value));
 
